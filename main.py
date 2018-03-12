@@ -2,11 +2,14 @@ import sys
 
 from util import keys, CommandInvocationError, CommandExecutionError, \
                     parse_options, HELP_OPTIONS
+from commands import add_api, update_api, deploy_api
 
-COMMANDS = {
+COMMANDS = {'add_api': add_api,
+            'deploy_api': deploy_api,
+            'update_api': update_api,
+            }
 
-}
-COMMANDS_ORDER = ()
+COMMANDS_ORDER = ('add_api', 'update_api', 'deploy_api')
 
 HELP_TEMPLATE = """\
 USAGE
@@ -102,13 +105,13 @@ def print_usage(command=None, error=None):
         print(USAGE)
 
         for cmd in COMMANDS_ORDER:
+            # print(cmd)
             mod = COMMANDS[cmd]
             first_line = mod.ABOUT.splitlines()[0]
             print("    %-18s  %s" % (cmd, first_line))
 
     if error:
-        prefix = "./carl {command}".format(command=command) if command else \
-                    './carl'
+        prefix = "./carl {command}".format(command=command) if command else './carl'
         print('')
         print("ERROR: {prefix}: {error}".format(prefix=prefix, error=error))
 
