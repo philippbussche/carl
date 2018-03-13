@@ -2,14 +2,15 @@ import sys
 
 from util import keys, CommandInvocationError, CommandExecutionError, \
                     parse_options, HELP_OPTIONS
-from commands import add_api, update_api, deploy_api
+from commands import add_api, update_api, deploy_api, delete_api
 
 COMMANDS = {'add_api': add_api,
             'deploy_api': deploy_api,
             'update_api': update_api,
+            'delete_api': delete_api
             }
 
-COMMANDS_ORDER = ('add_api', 'update_api', 'deploy_api')
+COMMANDS_ORDER = ('add_api', 'update_api', 'deploy_api', 'delete_api')
 
 HELP_TEMPLATE = """\
 USAGE
